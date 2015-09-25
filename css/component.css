@@ -57,14 +57,17 @@
 
 /* the toggle is the visible part in the form */
 .nl-field-toggle,
-.nl-form input,
+.nl-form input
 .nl-form select  {
 	line-height: inherit;
 	display: inline-block;
-	color: #b14943;
+	color: #3d88f9;
 	cursor: pointer;
-	border-bottom: 1px dashed #b14943;
+	border-bottom: 1px dashed #3d88f9;
 }
+
+.nl-field-toggle.placeholder {color:#EEE;}
+
 
 /* drop-down list / text element */
 .nl-field ul {
@@ -110,12 +113,52 @@
 }
 
 .no-touch .nl-dd ul li:hover {
+	background: transparent;
 	background: rgba(0,0,0,0.05);
 }
 
 .no-touch .nl-dd ul li:hover:active {
 	color: #478982;
 }
+/*.nl-form input[type="text"] {*/
+input[type="number"],
+input[type="text"] {
+	display:inline-block;
+    background: none;
+    border: 0;
+    border-bottom: 1px dashed #76C3BD;
+    /*width: auto;*/
+    font-size: 1em;
+    color: #3d88f9;
+
+    font: inherit;
+    text-align:center;
+}
+input[type="number"]{width:2em;}
+
+/*.nl-form input[type="text"]:focus {*/
+input[type="number"]:focus,
+input[type="text"]:focus {	
+    outline: none;
+    border-bottom: 1px dashed #FF6E01;
+}
+::-webkit-input-placeholder { /* WebKit browsers */
+    color:    #EEE;
+    font-weight: 300;
+}
+:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+    color:    #EEE;
+    opacity:  1;
+}
+::-moz-placeholder { /* Mozilla Firefox 19+ */
+    color:    #EEE;
+    opacity:  1;
+}
+:-ms-input-placeholder { /* Internet Explorer 10+ */
+    color:    #EEE;
+}
+
+
 
 /* icons for some elements */
 .nl-dd ul li.nl-dd-checked:before,
@@ -137,7 +180,7 @@
 	font-size: 50%;
 	line-height: 3;
 }
-
+/*==*/
 .nl-ti-text ul {
 	min-width: 8em;
 }
@@ -148,13 +191,14 @@
 	border-bottom: none;
 	color: #fff;
 }
-
+/*==*/
 .nl-form .nl-field-go {
 	position: absolute;
 	right: 0;
 	top: 0;
 	height: 100%;
 	cursor: pointer;
+	background: transparent;
 	background: rgba(0,0,0,0.1);
 	width: 1.8em;
 	text-align: center;
@@ -171,6 +215,7 @@
 }
 
 /* custom placeholder color */
+/*
 input::-webkit-input-placeholder {
 	color: rgba(255,255,255,0.8);
 }
@@ -189,27 +234,34 @@ input:focus::-moz-placeholder {
 	color: rgba(255,255,255,0.2);
 }
 
-input:-ms-input-placeholder {  
+input:-ms-input-placeholder {
+	color: rgb(255,255,255);
 	color: rgba(255,255,255,0.8);
 }
 
 input:active::-ms-input-placeholder ,
 input:focus::-ms-input-placeholder {
+	color: rgb(255,255,255);
 	color: rgba(255,255,255,0.2);
 }
-
+*/
 /* example field below text input */
 .nl-ti-text ul li.nl-ti-example {
 	font-size: 40%;
 	font-style: italic;
 	font-weight: 400;
 	padding: 0.4em 1em;
+	color: rgb(0,0,0);
 	color: rgba(0,0,0,0.2);
-	border-top: 1px dashed rgba(255,255,255,0.7);
+	border-top-width: 1px;
+	border-top-style: dashed;
+	border-top-color: rgba(255,255,255);
+	border-top-color: rgba(255,255,255,0.7);
+	/*border-top: 1px dashed rgba(255,255,255,0.7);*/
 }
 
 .nl-ti-text ul li.nl-ti-example em {
-	color: #fff
+	color: #fff;
 }
 
 /* submit button */
@@ -255,6 +307,7 @@ input:focus::-ms-input-placeholder {
 	left: 0;
 	width: 100%;
 	height: 100%;
+	background: rgb(0,0,0);
 	background: rgba(0,0,0,0.5);
 	opacity: 0;
 	z-index: 9999;

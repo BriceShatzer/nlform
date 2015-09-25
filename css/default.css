@@ -21,8 +21,8 @@ body, html { font-size: 100%; padding: 0; margin: 0;}
 
 body {
 	font-family: 'Lato', Calibri, Arial, sans-serif;
-	color: #ffe8e7;
-	background: #E96D65;
+	color: #9C9A9C;
+	background: #FFFFFF;
 	font-weight: 300;
 	overflow-x: hidden;
 }
@@ -38,6 +38,7 @@ a:active {
 }
 
 /* Header Style */
+/*
 .main,
 .container > header {
 	margin: 0 auto;
@@ -62,13 +63,14 @@ a:active {
 	color: #b14943;
 	padding: 0 0 0.6em 0.1em;
 }
-
+*/
 /* Main Content */
 .main {
-	max-width: 50em;
+	/*max-width: 60em;*/
 }
 
 /* To Navigation Style */
+/*
 .codrops-top {
 	background: #fff;
 	background: rgba(255, 255, 255, 0.4);
@@ -139,3 +141,4 @@ a:active {
 	}
 
 }
+*/
