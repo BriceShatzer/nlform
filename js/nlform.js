@@ -165,8 +165,7 @@
 			this.fld.appendChild( this.toggle );
 			this.fld.appendChild( this.optionsList );
 			this.elOriginal.parentNode.insertBefore( this.fld, this.elOriginal );
-			this.elOriginal.style.display = 'none';
-			debugger
+			this.elOriginal.style.display = 'none';			
 		},
 /*==*/
 		_initEvents : function() {
