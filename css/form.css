@@ -12,8 +12,10 @@
 /* general style for the form */
 .nl-form {
 	width: 100%;
-	margin: 0.3em auto 0 auto;
-	font-size: 2em;
+	margin: 0.3em auto 0 auto;	
+	margin-top:1.5rem;
+	/*font-size: 2em;*/
+	font-size: 1.8em;
 	line-height: 1.5em;
 	letter-spacing: .05em;
 	/*font-size: 4em;

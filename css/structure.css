@@ -16,6 +16,14 @@ body {
 	font-weight: 300;
 	overflow-x: hidden;
 }
+h1,h2{
+	color: #354247;
+	font-weight: 300;
+	text-align: center;
+}
+h1{font-size: 2em;}
+h2{font-size: 1.25em;}
+
 
 a {
 	color: #888;
@@ -40,8 +48,15 @@ a:active {
 .main:after{ clear: both; }
 
 .main{
-	padding: 2em;	
+	padding: 1.5em;	
 }
+.main>h1, .main>h2 {	
+	margin-bottom: 0;
+}
+.main>h1 { margin-top: 0;}
+.main>h2 { margin-top: 0.5rem;}
+
+
 
 /* Header Specific Styles */
 .header {	
