@@ -20,7 +20,8 @@ body, html { font-size: 100%; padding: 0; margin: 0;}
 .clearfix:after { clear: both; }
 
 body {
-	font-family: 'Lato', Calibri, Arial, sans-serif;
+	font-family: 'Lato', Calibri, Arial, sans-serif;	
+	letter-spacing: .05em;
 	color: #9C9A9C;
 	background: #FFFFFF;
 	font-weight: 300;
@@ -65,9 +66,15 @@ a:active {
 }
 */
 /* Main Content */
+
 .main {
-	/*max-width: 60em;*/
+	max-width: 60em;
+	padding: 2em;
+	margin-left:auto;
+	margin-right:auto;
 }
+.main:before, .main:after{ content: " "; display: table; }
+.main:after{ clear: both; }
 
 /* To Navigation Style */
 /*
