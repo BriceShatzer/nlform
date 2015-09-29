@@ -219,38 +219,6 @@ input[type="text"]:focus {
 	line-height: 3;
 	display: block;
 }
-
-/* custom placeholder color */
-/*
-input::-webkit-input-placeholder {
-	color: rgba(255,255,255,0.8);
-}
-
-input:active::-webkit-input-placeholder ,
-input:focus::-webkit-input-placeholder {
-	color: rgba(255,255,255,0.2);
-}
-
-input::-moz-placeholder {
-	color: rgba(255,255,255,0.8);
-}
-
-input:active::-moz-placeholder,
-input:focus::-moz-placeholder {
-	color: rgba(255,255,255,0.2);
-}
-
-input:-ms-input-placeholder {
-	color: rgb(255,255,255);
-	color: rgba(255,255,255,0.8);
-}
-
-input:active::-ms-input-placeholder ,
-input:focus::-ms-input-placeholder {
-	color: rgb(255,255,255);
-	color: rgba(255,255,255,0.2);
-}
-*/
 /* example field below text input */
 .nl-ti-text ul li.nl-ti-example {
 	font-size: 40%;
@@ -264,7 +232,6 @@ input:focus::-ms-input-placeholder {
 	border-top-style: dashed;
 	border-top-color: rgba(255,255,255);
 	border-top-color: rgba(255,255,255,0.7);
-	/*border-top: 1px dashed rgba(255,255,255,0.7);*/
 }
 
 .nl-ti-text ul li.nl-ti-example em {
