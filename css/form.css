@@ -1,74 +1,74 @@
 @font-face {
-	font-family: 'nlicons';
-	src:url('../fonts/nlicons/nlicons.eot');
-	src:url('../fonts/nlicons/nlicons.eot?#iefix') format('embedded-opentype'),
-		url('../fonts/nlicons/nlicons.woff') format('woff'),
-		url('../fonts/nlicons/nlicons.ttf') format('truetype'),
-		url('../fonts/nlicons/nlicons.svg#nlicons') format('svg');
-	font-weight: normal;
-	font-style: normal;
+    font-family: 'nlicons';
+    src:url('../fonts/nlicons/nlicons.eot');
+    src:url('../fonts/nlicons/nlicons.eot?#iefix') format('embedded-opentype'),
+        url('../fonts/nlicons/nlicons.woff') format('woff'),
+        url('../fonts/nlicons/nlicons.ttf') format('truetype'),
+        url('../fonts/nlicons/nlicons.svg#nlicons') format('svg');
+    font-weight: normal;
+    font-style: normal;
 }
 
 /* general style for the form */
 .nl-form {
-	width: 100%;
-	margin: 0.3em auto 0 auto;	
-	margin-top:1.5rem;
-	/*font-size: 2em;*/
-	font-size: 1.8em;
-	line-height: 1.5em;
-	letter-spacing: .05em;
-	/*font-size: 4em;
-	line-height: 1.5;*/
+    width: 100%;
+    margin: 0.3em auto 0 auto;    
+    margin-top:1.5rem;
+    /*font-size: 2em;*/
+    font-size: 1.8em;
+    line-height: 1.5em;
+    letter-spacing: .05em;
+    /*font-size: 4em;
+    line-height: 1.5;*/
 }
 
 .nl-form ul {
-	list-style: none;
-	margin: 0;
-	padding: 0;
+    list-style: none;
+    margin: 0;
+    padding: 0;
 }
 
 /* normalize the input elements, make them look like everything else */
 .nl-form input,
 .nl-form select,
 .nl-form button {
-	border: none;
-	background: transparent;
-	font-family: inherit;
-	font-size: inherit;
-	color: inherit;
-	font-weight: inherit;
-	line-height: inherit;
-	display: inline-block;
-	padding: 0;
-	margin: 0;
-	-webkit-appearance: none;
-	-moz-appearance: none;
+    border: none;
+    background: transparent;
+    font-family: inherit;
+    font-size: inherit;
+    color: inherit;
+    font-weight: inherit;
+    line-height: inherit;
+    display: inline-block;
+    padding: 0;
+    margin: 0;
+    -webkit-appearance: none;
+    -moz-appearance: none;
 }
 
 .nl-form input:focus {
-	outline: none;
+    outline: none;
 }
 
 /* custom field (drop-down, text element) styling  */
 .nl-field {
-	display: inline-block;
-	position: relative;
+    display: inline-block;
+    position: relative;
 }
 
 .nl-field.nl-field-open {
-	z-index: 10000;
+    z-index: 10000;
 }
 
 /* the toggle is the visible part in the form */
 .nl-field-toggle,
 .nl-form input
 .nl-form select  {
-	line-height: inherit;
-	display: inline-block;
-	color: #3d88f9;
-	cursor: pointer;
-	border-bottom: 1px dashed #3d88f9;
+    line-height: inherit;
+    display: inline-block;
+    color: #3d88f9;
+    cursor: pointer;
+    border-bottom: 1px dashed #3d88f9;
 }
 
 .nl-field-toggle.placeholder {color:#EEE;}
@@ -76,59 +76,59 @@
 
 /* drop-down list / text element */
 .nl-field ul {
-	position: absolute;
-	visibility: hidden;
-	background: #76C3BD;
-	left: -0.5em;
-	top: 50%;
-	font-size: 80%;
-	opacity: 0;
-	-webkit-transform: translateY(-40%) scale(0.9);
-	-moz-transform: translateY(-40%) scale(0.9);
-	transform: translateY(-40%) scale(0.9);
-	-webkit-transition: visibility 0s 0.3s, opacity 0.3s, -webkit-transform 0.3s;
-	-moz-transition: visibility 0s 0.3s, opacity 0.3s, -moz-transform 0.3s;
-	transition: visibility 0s 0.3s, opacity 0.3s, transform 0.3s;
+    position: absolute;
+    visibility: hidden;
+    background: #76C3BD;
+    left: -0.5em;
+    top: 50%;
+    font-size: 80%;
+    opacity: 0;
+    -webkit-transform: translateY(-40%) scale(0.9);
+    -moz-transform: translateY(-40%) scale(0.9);
+    transform: translateY(-40%) scale(0.9);
+    -webkit-transition: visibility 0s 0.3s, opacity 0.3s, -webkit-transform 0.3s;
+    -moz-transition: visibility 0s 0.3s, opacity 0.3s, -moz-transform 0.3s;
+    transition: visibility 0s 0.3s, opacity 0.3s, transform 0.3s;
 }
 
 .nl-field.nl-field-open ul {
-	visibility: visible;
-	opacity: 1;
-	-webkit-transform: translateY(-50%) scale(1);
-	-moz-transform: translateY(-50%) scale(1);
-	transform: translateY(-50%) scale(1);
-	-webkit-transition: visibility 0s 0s, opacity 0.3s, -webkit-transform 0.3s;
-	-moz-transition: visibility 0s 0s, opacity 0.3s, -moz-transform 0.3s;
-	transition: visibility 0s 0s, opacity 0.3s, transform 0.3s;
+    visibility: visible;
+    opacity: 1;
+    -webkit-transform: translateY(-50%) scale(1);
+    -moz-transform: translateY(-50%) scale(1);
+    transform: translateY(-50%) scale(1);
+    -webkit-transition: visibility 0s 0s, opacity 0.3s, -webkit-transform 0.3s;
+    -moz-transition: visibility 0s 0s, opacity 0.3s, -moz-transform 0.3s;
+    transition: visibility 0s 0s, opacity 0.3s, transform 0.3s;
 }
 
 .nl-field ul li {
-	color: #fff;
-	position: relative;
+    color: #fff;
+    position: relative;
 }
 
 .nl-dd ul li {
-	padding: 0 1.5em 0 0.5em;
-	cursor: pointer;
-	white-space: nowrap;
+    padding: 0 1.5em 0 0.5em;
+    cursor: pointer;
+    white-space: nowrap;
 }
 
 .nl-dd ul li.nl-dd-checked {
-	color: #478982;
+    color: #478982;
 }
 
 .no-touch .nl-dd ul li:hover {
-	background: transparent;
-	background: rgba(0,0,0,0.05);
+    background: transparent;
+    background: rgba(0,0,0,0.05);
 }
 
 .no-touch .nl-dd ul li:hover:active {
-	color: #478982;
+    color: #478982;
 }
 /*.nl-form input[type="text"] {*/
 input[type="number"],
 input[type="text"] {
-	display:inline-block;
+    display:inline-block;
     background: none;
     border: 0;
     border-bottom: 1px dashed #76C3BD;
@@ -143,7 +143,7 @@ input[type="number"]{width:2em;}
 
 /*.nl-form input[type="text"]:focus {*/
 input[type="number"]:focus,
-input[type="text"]:focus {	
+input[type="text"]:focus {    
     outline: none;
     border-bottom: 1px dashed #FF6E01;
 }
@@ -169,144 +169,162 @@ input[type="text"]:focus {
 .nl-dd ul li.nl-dd-checked:before,
 .nl-submit:before,
 .nl-field-go:before {
-	font-family: 'nlicons';
-	speak: none;
-	font-style: normal;
-	font-weight: normal;
-	font-variant: normal;
-	text-transform: none;
-	-webkit-font-smoothing: antialiased;
+    font-family: 'nlicons';
+    speak: none;
+    font-style: normal;
+    font-weight: normal;
+    font-variant: normal;
+    text-transform: none;
+    -webkit-font-smoothing: antialiased;
 }
 
 .nl-dd ul li.nl-dd-checked:before {
-	content: "\e000";
-	position: absolute;
-	right: 1em;
-	font-size: 50%;
-/*	line-height: 3;*/
+    content: "\e000";
+    position: absolute;
+    right: 1em;
+    font-size: 50%;
+/*    line-height: 3;*/
 }
 /*==*/
 .nl-ti-text ul {
-	min-width: 8em;
+    min-width: 8em;
 }
 
 .nl-ti-text ul li.nl-ti-input input {
-	width: 100%;
-	padding: 0.2em 2em 0.2em 0.5em;
-	border-bottom: none;
-	color: #fff;
+    width: 100%;
+    padding: 0.2em 2em 0.2em 0.5em;
+    border-bottom: none;
+    color: #fff;
 }
 /*==*/
 .nl-form .nl-field-go {
-	position: absolute;
-	right: 0;
-	top: 0;
-	height: 100%;
-	cursor: pointer;
-	background: transparent;
-	background: rgba(0,0,0,0.1);
-	width: 1.8em;
-	text-align: center;
-	color: transparent;
+    position: absolute;
+    right: 0;
+    top: 0;
+    height: 100%;
+    cursor: pointer;
+    background: transparent;
+    background: rgba(0,0,0,0.1);
+    width: 1.8em;
+    text-align: center;
+    color: transparent;
 }
 
 .nl-field-go:before {
-	content: "\e001";
-	font-size: 75%;
-	color: #fff;
-	width: 100%;
-	line-height: 2.5;
-	line-height: 3;
-	display: block;
+    content: "\e001";
+    font-size: 75%;
+    color: #fff;
+    width: 100%;
+    line-height: 2.5;
+    line-height: 3;
+    display: block;
 }
 /* example field below text input */
 .nl-ti-text ul li.nl-ti-example {
-	font-size: 40%;
-	font-style: italic;
-	font-weight: 400;
-	line-height:initial;
-	padding: 0.4em 1em;
-	color: rgb(0,0,0);
-	color: rgba(0,0,0,0.2);
-	border-top-width: 1px;
-	border-top-style: dashed;
-	border-top-color: rgba(255,255,255);
-	border-top-color: rgba(255,255,255,0.7);
+    font-size: 40%;
+    font-style: italic;
+    font-weight: 400;
+    line-height:initial;
+    padding: 0.4em 1em;
+    color: rgb(0,0,0);
+    color: rgba(0,0,0,0.2);
+    border-top-width: 1px;
+    border-top-style: dashed;
+    border-top-color: rgba(255,255,255);
+    border-top-color: rgba(255,255,255,0.7);
 }
 
 .nl-ti-text ul li.nl-ti-example em {
-	color: #fff;
+    color: #fff;
 }
+
+/* next-step button */
+.nl-form .next-step{
+	cursor: pointer;
+	text-transform: uppercase;
+	font-weight:400;
+	font-size:1.25rem;
+	letter-spacing:normal;
+	margin: 0.5em;
+	border-radius: 3px;
+	padding: 0.2em 1em;
+	color: #FFF;
+	background-color: #ff8100;
+}
+.nl-form .next-step:hover{
+	background-color:#ff8e1a;
+}
+
 
 /* submit button */
 .nl-submit-wrap {
-	margin-top: 0.4em;
+    margin-top: 0.4em;
 }
 
 .nl-form .nl-submit {
-	line-height: 3;
-	text-transform: uppercase;
-	cursor: pointer;
-	position: relative;
-	background: #76C3BD;
-	color: #fff;
-	padding: 0 1em 0 0;
-	font-size: 40%;
-	font-weight: bold;
-	letter-spacing: 3px;
+    line-height: 3;
+    text-transform: uppercase;
+    cursor: pointer;
+    position: relative;
+    background: #76C3BD;
+    color: #fff;
+    padding: 0 1em 0 0;
+    font-size: 40%;
+    font-weight: bold;
+    letter-spacing: 3px;
 }
 
 .nl-submit:before {
-	content: "\e001";
-	color: #fff;
-	float: left;
-	padding: 0 0.7em;
-	margin: 0 0.8em 0 0;
-	background: #69B1A9;
+    content: "\e001";
+    color: #fff;
+    float: left;
+    padding: 0 0.7em;
+    margin: 0 0.8em 0 0;
+    background: #69B1A9;
 }
 
 .no-touch .nl-form .nl-submit:hover,
 .no-touch .nl-form .nl-submit:active {
-	background: #69B1A9;
+    background: #69B1A9;
 }
 
 .no-touch .nl-form .nl-submit:hover:before {
-	background: #58a199;
+    background: #58a199;
 }
 
 /* overlay becomes visible when a field is opened */
 .nl-overlay {
-	position: fixed;
-	top: 0;
-	left: 0;
-	width: 100%;
-	height: 100%;
-	background: rgb(0,0,0);
-	background: rgba(0,0,0,0.5);
-	opacity: 0;
-	z-index: 9999;
-	visibility: hidden;
-	-webkit-transition: visibility 0s 0.3s, opacity 0.3s;
-	-moz-transition: visibility 0s 0.3s, opacity 0.3s;
-	transition: visibility 0s 0.3s, opacity 0.3s;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgb(0,0,0);
+    background: rgba(0,0,0,0.5);
+    opacity: 0;
+    z-index: 9999;
+    visibility: hidden;
+    -webkit-transition: visibility 0s 0.3s, opacity 0.3s;
+    -moz-transition: visibility 0s 0.3s, opacity 0.3s;
+    transition: visibility 0s 0.3s, opacity 0.3s;
 }
 
 .nl-field.nl-field-open ~ .nl-overlay {
-	opacity: 1;
-	visibility: visible;
-	-webkit-transition-delay: 0s;
-	-moz-transition-delay: 0s;
-	transition-delay: 0s;
+    opacity: 1;
+    visibility: visible;
+    -webkit-transition-delay: 0s;
+    -moz-transition-delay: 0s;
+    transition-delay: 0s;
 }
 
 @media screen and (max-width: 45em) {
-	.nl-form {
-		font-size: 1.5em;
-	}
+    .nl-form {
+        font-size: 1.5em;
+    }
 }
 /*
 @media screen and (max-width: 35em) {
-	.nl-form {
+    .nl-form {
 
-	}
+    }
 }*/
