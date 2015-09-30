@@ -358,7 +358,7 @@ function getYear () {
     var func = function(){
         var bottom = document.getElementById('contact-info');
         
-        nextStepButton.style.display = "none";
+        nextStepButton.style.display = 'none';
         bottom.style.maxHeight = bottom.scrollHeight+'px';
     }
 
