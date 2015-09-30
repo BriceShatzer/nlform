@@ -26,13 +26,10 @@
             <h1>Good News! There are Multiple Health Plans Available in 60601.</h1>
             <h2>Help us find plans that are best suited for you by filling out the information below.</h2>
             <form id="form" class="nl-form">
-            <input type="hidden" name="insured_1_dobYYYY" id="insured_1_dobYYYY" value="">
-            <input type="hidden" name="address_1_state" id="address_1_state" value="">
-            <input type="hidden" name="address_1_city" id="address_1_city" value="">
-
-
-
-
+                <input type="hidden" name="insured_1_dobYYYY" id="insured_1_dobYYYY" value="">
+                <input type="hidden" name="address_1_state" id="address_1_state" value="">
+                <input type="hidden" name="address_1_city" id="address_1_city" value="">
+                
                 My zip code is 
                 <input name="address_1_zip" id="address_1_zip" type="text" size="5" autocomplete="postal-code" pattern="[0-9]{5}" minlength="5" maxlength="5" value="60067"> 
                 and I'm a 
@@ -42,9 +39,9 @@
                     <option value="Female" selected>woman</option>
                     <option value="Male">man</option>                        
                 </select>.
-
+                
                 <br>
-                I  
+                
                 <select name="insured_1_smoker" id="insured_1_smoker">
                     <option value="no" selected>do not</option>
                     <option value="yes">do</option>                        
@@ -65,42 +62,40 @@
                     <option value="12">December</option>
                 </select>,
                 <input name="insured_1_dobDD" id="insured_1_dobDD" type="number" min="1" max="31" value="1" type="number" placeholder="">.
-
+                
                 <br>
+                <button id="next-step" type="button">Next</button>                
 
-
-                <button class="next-step" type="button">Next</button>
-
-                <br>
-
-
-                My name is <input name="first_name" id="first_name" type="text" > <input name="last_name" id="last_name" type="text" > and I can be reached at <input name="phone" id="phone" type="tel" minlength="10" pattern="\(*\d{3}[\)\-]*\d{3}[\-]*\d{4}" inputmode="tel"> or <input name="email" class="modal" id="email" type="email" placeholder="name@email.com"> 
-
+                <div id="contact-info">
+                
+                    My name is 
+                    <input name="first_name" id="first_name" type="text" placeholder="Firstname" > 
+                    <input name="last_name" id="last_name" type="text" placeholder="Lastname" > 
+                    and I can be reached at 
+                    <input name="phone" id="phone" type="tel" minlength="10" pattern="\(*\d{3}[\)\-]*\d{3}[\-]*\d{4}" inputmode="tel"> 
+                    or 
+                    <input name="email" id="email" type="email" placeholder="name@email.com">
+                
 <!--
-                I'd like to cover
-                <select>
-                    <option value="1" selected>me</option>
-                    <option value="2">me and my spouse</option>
-                    <option value="3">me and my kids</option>                    
-                    <option value="4">me, my spouse, and kids</option>
-                </select>
-                <br>
+                
+                    I'd like to cover
+                    <select>
+                        <option value="1" selected>me</option>
+                        <option value="2">me and my spouse</option>
+                        <option value="3">me and my kids</option>                    
+                        <option value="4">me, my spouse, and kids</option>
+                    </select>
+                    <br>
+
+                    My family will earn 
+                    <input name="income" id="income" type="text"  class="income" value="" placeholder="$00,000" data-subline="* Family earnings are required to get a quote."> in 2016.
+                
 -->
-                <br> 
-
-                My family will earn 
-                <input name="income" id="income" type="text"  class="income" value="" placeholder="$00,000" data-subline="* Family earnings are required to get a quote."> in 2016.
-                <br>
-                
-                
-
-                <br>
-
-            
-                <div class="nl-submit-wrap">
-                    <button class="nl-submit" type="submit">submit</button>
+                    
+                    <div class="nl-submit-wrap">
+                        <button class="nl-submit" type="submit">submit</button>
+                    </div>
                 </div>
-
 
                 <div class="nl-overlay"></div>
             </form>

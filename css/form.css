@@ -17,6 +17,7 @@
     /*font-size: 2em;*/
     font-size: 1.8em;
     line-height: 1.5em;
+    line-height: 1.8em;
     letter-spacing: .05em;
     /*font-size: 4em;
     line-height: 1.5;*/
@@ -127,6 +128,8 @@
 }
 /*.nl-form input[type="text"] {*/
 input[type="number"],
+input[type="tel"],
+input[type="email"],
 input[type="text"] {
     display:inline-block;
     background: none;
@@ -141,9 +144,19 @@ input[type="text"] {
     text-align:center;
 }
 input[type="number"]{width:2em;}
+#first_name,#last_name{ 
+	width: 6em;
+	min-width: 6em;
+}
+#phone,
+input[type="email"]{
+	width:8em;
+	min-width:8em;
+}
 
 /*.nl-form input[type="text"]:focus {*/
 input[type="number"]:focus,
+input[type="email"]:focus,
 input[type="text"]:focus {    
     outline: none;
     border-bottom: 1px dashed #FF6E01;
@@ -242,7 +255,7 @@ input[type="text"]:focus {
 }
 
 /* next-step & submit buttons */
-.nl-form .next-step,
+#next-step,
 .nl-form .nl-submit{
 	outline: none;
 	cursor: pointer;
@@ -257,8 +270,8 @@ input[type="text"]:focus {
 	background-color: #ff8100;
 }
 
-.nl-form .next-step:hover,
-.nl-form .next-step:active,
+#next-step:hover,
+#next-step:active,
 .nl-form .nl-submit:hover,
 .nl-form .nl-submit:active{
 	background-color:#ff8e1a;
@@ -269,6 +282,16 @@ input[type="text"]:focus {
 .nl-submit-wrap {
     margin-top: 0.4em;
 }
+
+#contact-info{
+	overflow-y: hidden;
+	/*max-height: 500px; /* approximate max height */
+	max-height: 0px;
+	transition-property: all;
+	transition-duration: .5s;
+	transition-timing-function: cubic-bezier(0, 1, 0.5, 1);
+}
+
 
 /*
 .nl-form .nl-submit {
@@ -293,7 +316,7 @@ input[type="text"]:focus {
     margin: 0 0.8em 0 0;
     background: #69B1A9;
 }
-*/
+
 .no-touch .nl-form .nl-submit:hover,
 .no-touch .nl-form .nl-submit:active {
     background: #69B1A9;
@@ -302,6 +325,7 @@ input[type="text"]:focus {
 .no-touch .nl-form .nl-submit:hover:before {
     background: #58a199;
 }
+*/
 
 /* overlay becomes visible when a field is opened */
 .nl-overlay {

@@ -1,12 +1,9 @@
 /**
- * nlform.js v1.0.0
+ *
+ * Derived from Codrops NaturalLanguageForm
+ * https://github.com/codrops/NaturalLanguageForm
  * http://www.codrops.com
  *
- * Licensed under the MIT license.
- * http://www.opensource.org/licenses/mit-license.php
- * 
- * Copyright 2013, Codrops
- * http://www.codrops.com
  */
 ;( function( window ) {
     
@@ -253,96 +250,124 @@
 
 } )( window );
 
-//=== "NEXT" button functionality ===
+
+
 function validateInput(element_id){
-	var el       = document.getElementById(element_id);
-	var toggleEl = { status: false, element: '' };
+    var el       = document.getElementById(element_id);
+    var toggleEl = { status: false, element: '' };
 
-	if(document.getElementById(element_id+'-toggle')){ 
-		toggleEl.status  = true;
-		toggleEl.element = document.getElementById(element_id+'-toggle');
-	}
+    if(document.getElementById(element_id+'-toggle')){ 
+        toggleEl.status  = true;
+        toggleEl.element = document.getElementById(element_id+'-toggle');
+    }
 
-	function _setInvalid(){
-		if(toggle.status){ toggleEl.element.className+=" invalid" };
-		el.className+=" invalid"; 
-	}
-	
+    function _setInvalid(){
+        if(toggle.status){ toggleEl.element.className+=" invalid" };
+        el.className+=" invalid"; 
+    }
+    
 
-	function _removeInvalid () {
-		var classArray = el.className.split(' ');
-		el.className = classArray.splice(classArray.indexOf("invalid"),1);
-		
-		if(toggle.status){ 
-			var ToggleClassArray = toggleEl.className.split(' ');
-			toggleEl.className = ToggleClassArray.splice(ToggleClassArray.indexOf("invalid"),1);			
-		};	
-	}
+    function _removeInvalid () {
+        var classArray = el.className.split(' ');
+        el.className = classArray.splice(classArray.indexOf("invalid"),1);
+        
+        if(toggle.status){ 
+            var ToggleClassArray = toggleEl.className.split(' ');
+            toggleEl.className = ToggleClassArray.splice(ToggleClassArray.indexOf("invalid"),1);            
+        };    
+    }
 
 
 
-	switch (el.getAttribute('type')) {
-		case 'number':	
-			if( !el.value || 
-				isNaN(el.value) ||
-				el.value < el.getAttribute('min') && el.value > el.getAttribute('max') ){
-					el.className+=" invalid"; 
-			} 
-			break;
+    switch (el.getAttribute('type')) {
+        case 'number':    
+            if( !el.value || 
+                isNaN(el.value) ||
+                el.value < el.getAttribute('min') && el.value > el.getAttribute('max') ){
+                    el.className+=" invalid"; 
+            } 
+            break;
 
-		case 'text':
-			if( !el.value ||
-				el.getAttribute('minlength') && el.value.length < el.getAttribute('minlength') || 
-				el.getAttribute('maxlength') && el.value.length > el.getAttribute('maxlength') ){
-					el.className+=" invalid"; 
-				} 
-			break;
-		
-	} //else if(el.getAttribute('type') === 'text')) 
+        case 'text':
+            if( !el.value ||
+                el.getAttribute('minlength') && el.value.length < el.getAttribute('minlength') || 
+                el.getAttribute('maxlength') && el.value.length > el.getAttribute('maxlength') ){
+                    el.className+=" invalid"; 
+                } 
+            break;
+        
+    } //else if(el.getAttribute('type') === 'text')) 
 }
 
 function getCityState(){
-	var request = new XMLHttpRequest();
-	var url     = "http://api.zippopotam.us/us/"+document.getElementBYId('address_1_zip').value;
+    var request = new XMLHttpRequest();
+    var url     = "http://api.zippopotam.us/us/"+document.getElementById('address_1_zip').value;
 
+    request.open("GET", url, true);
+    request.onreadystatechange = function() {
+        if(request.readyState == 4) {
+            var locationInfo = JSON.parse(request.responseText).places[0];
+            document.getElementById('address_1_state').value = locationInfo["state abbreviation"];
+            document.getElementById('address_1_city').value  = locationInfo["place name"];
+        };
+    };
 
-	request.open("GET", url, true);
-	request.onreadystatechange = function() {
-		if(request.readyState == 4) {
-			var locationInfo = JSON.parse(request.responseText).places[0];
-			document.getElementBYId('address_1_state').value = locationInfo["state abbreviation"];
-			document.getElementBYId('address_1_city').value  = locationInfo["place name"];
-		};
-	};
-
-	request.send()
+    request.send();
 }
-
-
-
 
 function getYear () {
-	function value(element_id){ return document.getElementById('element_id').value }
-	var userAge   = value('age_value');
-	var userMonth = value('insured_1_dobMM');
-	var userDay   = value('insured_1_dobDD');
-	var today     = new Date();
-	var userYear  = today.getFullYear() - ( today.getMonth() < userMonth-1  || (today.getMonth() == userMonth-1 && today.getDate() > userDay) ? userAge+1 : userAge );
-	
-	document.getElementBYId('insured_1_dobYYYY').value = userYear;	
+    function value(element_id){ return document.getElementById('element_id').value }
+    var userAge   = value('age_value');
+    var userMonth = value('insured_1_dobMM');
+    var userDay   = value('insured_1_dobDD');
+    var today     = new Date();
+    var userYear  = today.getFullYear() - ( today.getMonth() < userMonth-1  || (today.getMonth() == userMonth-1 && today.getDate() > userDay) ? userAge+1 : userAge );
+    
+    document.getElementById('insured_1_dobYYYY').value = userYear;    
 }
-/*
-(function(){ 
-		var element = document.getElementBYId('next-step');
-		var func    = function(){
 
-		}
-	        if(window.addEventListener){ // modern browsers including IE9+
-	            el.addEventListener('click', func, false);
-	        } else if(window.attachEvent) { // IE8 and below
-	            el.attachEvent('onclick', func);
-	        } else {
-	            el['onclick'] = func;
-	        }
+(function(){
+
+/* === text input auto sizing === */
+    function autoInputSizing(element_id){
+        document.getElementById(element_id).onkeyup = function(){            
+            this.style.width = this.value.length*.51 +"em";
+        }
+    }
+    autoInputSizing('first_name');
+    autoInputSizing('last_name');
+    autoInputSizing('email');
+
+/* === phone number masking === */
+    document.getElementById('phone').onkeyup = function(){
+        this.value = this.value.replace(/\D/g, ''); // prevent non-digits
+
+        this.value = this.value.replace(/(\d{3})(\d)/, '($1)$2')
+            .replace(/^(\(\d{3}\)\d{3})(\d)/, '$1-$2'); // apply proper formatting 
+
+        if (this.value.length > 13) { // ensure proper length
+            this.value = this.value.slice(0, -1);
+            return;
+        }
+
+    };
+
+
+/* === "NEXT" Button behavior === */
+    var nextStepButton = document.getElementById('next-step');
+    var func = function(){
+        var bottom = document.getElementById('contact-info');
+        
+        nextStepButton.style.display = "none";
+        bottom.style.maxHeight = bottom.scrollHeight+'px';
+    }
+
+    if(window.addEventListener){ // modern browsers including IE9+
+        nextStepButton.addEventListener('click', func, false);
+    } else if(window.attachEvent) { // IE8 and below
+        nextStepButton.attachEvent('onclick', func);
+    } else {
+        nextStepButton['onclick'] = func;
+    }
+
 }());
-*/
