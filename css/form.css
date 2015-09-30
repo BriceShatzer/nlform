@@ -71,14 +71,14 @@
     border-bottom: 1px dashed #3d88f9;
 }
 
-.nl-field-toggle.placeholder {color:#EEE;}
+.nl-field-toggle.placeholder {color:#7E8D9B;}
 
 
 /* drop-down list / text element */
 .nl-field ul {
     position: absolute;
     visibility: hidden;
-    background: #76C3BD;
+    background: #F4F4F4;
     left: -0.5em;
     top: 50%;
     font-size: 80%;
@@ -103,7 +103,7 @@
 }
 
 .nl-field ul li {
-    color: #fff;
+    color: #7E8D9B;
     position: relative;
 }
 
@@ -114,7 +114,7 @@
 }
 
 .nl-dd ul li.nl-dd-checked {
-    color: #478982;
+    color: #003C6F;
 }
 
 .no-touch .nl-dd ul li:hover {
@@ -123,7 +123,7 @@
 }
 
 .no-touch .nl-dd ul li:hover:active {
-    color: #478982;
+    color: #003C6F;
 }
 /*.nl-form input[type="text"] {*/
 input[type="number"],
@@ -131,7 +131,8 @@ input[type="text"] {
     display:inline-block;
     background: none;
     border: 0;
-    border-bottom: 1px dashed #76C3BD;
+    border-bottom: 1px dashed #F4F4F4;
+    border-bottom: 1px dashed #3d88f9;
     /*width: auto;*/
     font-size: 1em;
     color: #3d88f9;
@@ -148,19 +149,19 @@ input[type="text"]:focus {
     border-bottom: 1px dashed #FF6E01;
 }
 ::-webkit-input-placeholder { /* WebKit browsers */
-    color:    #EEE;
+    color:    #7E8D9B;
     font-weight: 300;
 }
 :-moz-placeholder { /* Mozilla Firefox 4 to 18 */
-    color:    #EEE;
+    color:    #7E8D9B;
     opacity:  1;
 }
 ::-moz-placeholder { /* Mozilla Firefox 19+ */
-    color:    #EEE;
+    color:    #7E8D9B;
     opacity:  1;
 }
 :-ms-input-placeholder { /* Internet Explorer 10+ */
-    color:    #EEE;
+    color:    #7E8D9B;
 }
 
 
@@ -194,7 +195,7 @@ input[type="text"]:focus {
     width: 100%;
     padding: 0.2em 2em 0.2em 0.5em;
     border-bottom: none;
-    color: #fff;
+    color: #7E8D9B;
 }
 /*==*/
 .nl-form .nl-field-go {
@@ -213,7 +214,7 @@ input[type="text"]:focus {
 .nl-field-go:before {
     content: "\e001";
     font-size: 75%;
-    color: #fff;
+    color: #7E8D9B;
     width: 100%;
     line-height: 2.5;
     line-height: 3;
@@ -221,13 +222,14 @@ input[type="text"]:focus {
 }
 /* example field below text input */
 .nl-ti-text ul li.nl-ti-example {
-    font-size: 40%;
+    font-size: 50%;
     font-style: italic;
     font-weight: 400;
     line-height:initial;
     padding: 0.4em 1em;
     color: rgb(0,0,0);
     color: rgba(0,0,0,0.2);
+    color: #003C6F;
     border-top-width: 1px;
     border-top-style: dashed;
     border-top-color: rgba(255,255,255);
@@ -235,11 +237,14 @@ input[type="text"]:focus {
 }
 
 .nl-ti-text ul li.nl-ti-example em {
-    color: #fff;
+    color: #7E8D9B;
+
 }
 
-/* next-step button */
-.nl-form .next-step{
+/* next-step & submit buttons */
+.nl-form .next-step,
+.nl-form .nl-submit{
+	outline: none;
 	cursor: pointer;
 	text-transform: uppercase;
 	font-weight:400;
@@ -251,7 +256,11 @@ input[type="text"]:focus {
 	color: #FFF;
 	background-color: #ff8100;
 }
-.nl-form .next-step:hover{
+
+.nl-form .next-step:hover,
+.nl-form .next-step:active,
+.nl-form .nl-submit:hover,
+.nl-form .nl-submit:active{
 	background-color:#ff8e1a;
 }
 
@@ -261,18 +270,20 @@ input[type="text"]:focus {
     margin-top: 0.4em;
 }
 
+/*
 .nl-form .nl-submit {
     line-height: 3;
     text-transform: uppercase;
     cursor: pointer;
     position: relative;
-    background: #76C3BD;
+    background: #F4F4F4;
     color: #fff;
     padding: 0 1em 0 0;
     font-size: 40%;
     font-weight: bold;
     letter-spacing: 3px;
 }
+
 
 .nl-submit:before {
     content: "\e001";
@@ -282,7 +293,7 @@ input[type="text"]:focus {
     margin: 0 0.8em 0 0;
     background: #69B1A9;
 }
-
+*/
 .no-touch .nl-form .nl-submit:hover,
 .no-touch .nl-form .nl-submit:active {
     background: #69B1A9;

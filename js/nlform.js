@@ -135,7 +135,8 @@
             this.fld = document.createElement( 'div' );
             this.fld.className = 'nl-field nl-ti-text';
             this.toggle = document.createElement( 'a' );
-            this.toggle.className = 'nl-field-toggle';            
+            this.toggle.className = 'nl-field-toggle';
+            this.toggle.id = this.elOriginal.id+"-toggle";
             if(this.elOriginal.getAttribute('value')){                
                 this.toggle.innerHTML = this.elOriginal.getAttribute('value');
             } else { 
@@ -252,9 +253,76 @@
 
 } )( window );
 
+//=== "NEXT" button functionality ===
+function validateInput(element_id){
+	var el       = document.getElementById(element_id);
+	var toggleEl = { status: false, element: '' };
+
+	if(document.getElementById(element_id+'-toggle')){ 
+		toggleEl.status  = true;
+		toggleEl.element = document.getElementById(element_id+'-toggle');
+	}
+
+	function _setInvalid(){
+		if(toggle.status){ toggleEl.element.className+=" invalid" };
+		el.className+=" invalid"; 
+	}
+	
+
+	function _removeInvalid () {
+		var classArray = el.className.split(' ');
+		el.className = classArray.splice(classArray.indexOf("invalid"),1);
+		
+		if(toggle.status){ 
+			var ToggleClassArray = toggleEl.className.split(' ');
+			toggleEl.className = ToggleClassArray.splice(ToggleClassArray.indexOf("invalid"),1);			
+		};	
+	}
+
+
+
+	switch (el.getAttribute('type')) {
+		case 'number':	
+			if( !el.value || 
+				isNaN(el.value) ||
+				el.value < el.getAttribute('min') && el.value > el.getAttribute('max') ){
+					el.className+=" invalid"; 
+			} 
+			break;
+
+		case 'text':
+			if( !el.value ||
+				el.getAttribute('minlength') && el.value.length < el.getAttribute('minlength') || 
+				el.getAttribute('maxlength') && el.value.length > el.getAttribute('maxlength') ){
+					el.className+=" invalid"; 
+				} 
+			break;
+		
+	} //else if(el.getAttribute('type') === 'text')) 
+}
+
+function getCityState(){
+	var request = new XMLHttpRequest();
+	var url     = "http://api.zippopotam.us/us/"+document.getElementBYId('address_1_zip').value;
+
+
+	request.open("GET", url, true);
+	request.onreadystatechange = function() {
+		if(request.readyState == 4) {
+			var locationInfo = JSON.parse(request.responseText).places[0];
+			document.getElementBYId('address_1_state').value = locationInfo["state abbreviation"];
+			document.getElementBYId('address_1_city').value  = locationInfo["place name"];
+		};
+	};
+
+	request.send()
+}
+
+
+
 
 function getYear () {
-	function value(element_id){ return getElementBYId('element_id').value }
+	function value(element_id){ return document.getElementById('element_id').value }
 	var userAge   = value('age_value');
 	var userMonth = value('insured_1_dobMM');
 	var userDay   = value('insured_1_dobDD');
@@ -263,3 +331,18 @@ function getYear () {
 	
 	document.getElementBYId('insured_1_dobYYYY').value = userYear;	
 }
+/*
+(function(){ 
+		var element = document.getElementBYId('next-step');
+		var func    = function(){
+
+		}
+	        if(window.addEventListener){ // modern browsers including IE9+
+	            el.addEventListener('click', func, false);
+	        } else if(window.attachEvent) { // IE8 and below
+	            el.attachEvent('onclick', func);
+	        } else {
+	            el['onclick'] = func;
+	        }
+}());
+*/
