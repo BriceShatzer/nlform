@@ -274,61 +274,62 @@ function hasClass(element, className){
 }
 
 
-function validateInput(element_id,state){
+function validateInput(element_id, state){
     var el       = document.getElementById(element_id);
     var toggleEl = { status: false, element: '' };
+	var emailRegex = new RegExp('^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$');
 
     if(document.getElementById(element_id+'-toggle')){ 
         toggleEl.status  = true;
         toggleEl.element = document.getElementById(element_id+'-toggle');
     }
 
-    function _setInvalid(){
+    function setInvalid(){
         if(toggleEl.status){
 			addClass(toggleEl.element,'invalid');			 
         };
         addClass(el,'invalid');       
     }
     
-    function _removeInvalid () {
+    function removeInvalid () {
     	if(toggleEl.status){
     		removeClass(toggleEl.element, 'invalid');
     	 }
-    	removeClass (el, 'invalid')
-    	/*
-        var classArray = el.className.split(' ');
-        el.className = classArray.splice(classArray.indexOf("invalid"),1);
-        
-        if(toggle.status){ 
-            var ToggleClassArray = toggleEl.className.split(' ');
-            toggleEl.className = ToggleClassArray.splice(ToggleClassArray.indexOf("invalid"),1);            
-        };
-        */
+    	removeClass (el, 'invalid');
     }
 
-if(state){ _removeInvalid(); } else { _setInvalid(); }
-
-/*
+	
 
     switch (el.getAttribute('type')) {
         case 'number':    
             if( !el.value || 
                 isNaN(el.value) ||
                 el.value < el.getAttribute('min') && el.value > el.getAttribute('max') ){
-                    el.className+=" invalid"; 
+                    addClass(el, "invalid");                  
             } 
             break;
 
         case 'text':
+        case 'phone':
             if( !el.value ||
                 el.getAttribute('minlength') && el.value.length < el.getAttribute('minlength') || 
                 el.getAttribute('maxlength') && el.value.length > el.getAttribute('maxlength') ){
-                    el.className+=" invalid"; 
-                } 
+              		addClass(el, "invalid");
+            } else if( el.getAttribute('pattern') ){
+        		var pattern = new RegExp('^' + el.getAttribute('pattern') + '$', 'gi');
+	    		if( !pattern.test(el.value) ){ 
+	    			addClass(el, "invalid");
+	    		}
+    		}
             break;
-        
-    } //else if(el.getAttribute('type') === 'text')) 
-*/
+
+		case 'email':
+			if( !el.value || emailRegex.test(el.value) ){
+				addClass(el, "invalid");
+			}
+			break;        
+    }  
+
 }
 
 function getCityState(){
@@ -337,10 +338,14 @@ function getCityState(){
 
     request.open("GET", url, true);
     request.onreadystatechange = function() {
-        if(request.readyState == 4) {
-            var locationInfo = JSON.parse(request.responseText).places[0];
-            document.getElementById('address_1_state').value = locationInfo["state abbreviation"];
-            document.getElementById('address_1_city').value  = locationInfo["place name"];
+        if(request.readyState === 4) {
+        	if (this.status >= 200 && this.status < 400) { // lookup & input city/state by zip
+	            var locationInfo = JSON.parse(request.responseText).places[0];
+	            document.getElementById('address_1_state').value = locationInfo['state abbreviation'];
+	            document.getElementById('address_1_city').value  = locationInfo['place name'];
+        	} else { // show city/state inputs on failed lookup
+        		addClass(document.getElementById('location'), 'show');
+        	}
         };
     };
 
@@ -354,7 +359,7 @@ function getYear () {
     var userDay   = value('insured_1_dobDD');
     var today     = new Date();
     var userYear  = today.getFullYear() - ( today.getMonth() < userMonth-1  || (today.getMonth() == userMonth-1 && today.getDate() > userDay) ? userAge+1 : userAge );
-    
+ 
     document.getElementById('insured_1_dobYYYY').value = userYear;    
 }
 
@@ -400,24 +405,67 @@ function getYear () {
 /* === phone number masking === */
     document.getElementById('phone').onkeyup = function(){
         this.value = this.value.replace(/\D/g, ''); // prevent non-digits
-
         this.value = this.value.replace(/(\d{3})(\d)/, '($1)$2')
             .replace(/^(\(\d{3}\)\d{3})(\d)/, '$1-$2'); // apply proper formatting 
-
         if (this.value.length > 13) { // ensure proper length
             this.value = this.value.slice(0, -1);
             return;
         }
-
     };
+
+/* === lookup & set city/state based on zip === */
+	function getCityState () {
+	    var request = new XMLHttpRequest();
+	    var url     = "http://api.zippopotam.us/us/"+document.getElementById('address_1_zip').value;
+
+	    request.open("GET", url, true);
+	    request.onreadystatechange = function() {
+	        if(request.readyState === 4) {
+	        	if (this.status >= 200 && this.status < 400) { // lookup & input city/state by zip
+		            var locationInfo = JSON.parse(request.responseText).places[0];
+		            document.getElementById('address_1_state').value = locationInfo['state abbreviation'];
+		            document.getElementById('address_1_city').value  = locationInfo['place name'];
+	        	} else { // show city/state inputs on failed lookup
+	        		addClass(document.getElementById('location'), 'show');
+	        	};
+	        };
+	    };
+	    request.send();
+	}
+/* === calculate birth year via age & birth date === */
+	function getYear () {
+	    function value(element_id){ return document.getElementById('element_id').value }
+	    var userAge   = value('age_value');
+	    var userMonth = value('insured_1_dobMM');
+	    var userDay   = value('insured_1_dobDD');
+	    var today     = new Date();
+	    var userYear  = today.getFullYear() - ( today.getMonth() < userMonth-1  || (today.getMonth() == userMonth-1 && today.getDate() > userDay) ? userAge+1 : userAge );
+
+	    document.getElementById('insured_1_dobYYYY').value = userYear;    
+	}
 
 /* === "NEXT" Button behavior === */
     var nextStepButton = document.getElementById('next-step');
     var func = function(){
-        var bottom = document.getElementById('contact-info');
+
+		validateInput('address_1_zip');
+		validateInput('age');
+		validateInput('insured_1_dobDD');
+		if( document.querySelectorAll('.invalid').length > 0 ){
+			var nextInvalidMessage = document.getElementById('next-invalid-message');
+			nextInvalidMessage.style.maxHeight = nextInvalidMessage.scrollHeight+'px';
+
+		} else {
+	    	getCityState();
+	    	getYear();	    	
+	        
+	        nextStepButton.style.display = 'none';
+			var bottom = document.getElementById('contact-info');
+	        bottom.style.maxHeight = bottom.scrollHeight+'px';
+        }
         
-        nextStepButton.style.display = 'none';
-        bottom.style.maxHeight = bottom.scrollHeight+'px';
+        	    
+
     }
 
     if(window.addEventListener){ // modern browsers including IE9+

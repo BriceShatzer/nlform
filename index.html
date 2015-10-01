@@ -27,13 +27,12 @@
             <h2>Help us find plans that are best suited for you by filling out the information below.</h2>
             <form id="form" class="nl-form">
                 <input type="hidden" name="insured_1_dobYYYY" id="insured_1_dobYYYY" value="">
-                <input type="hidden" name="address_1_state" id="address_1_state" value="">
-                <input type="hidden" name="address_1_city" id="address_1_city" value="">
+
                 
                 My zip code is 
                 <input name="address_1_zip" id="address_1_zip" type="text" size="5" autocomplete="postal-code" pattern="[0-9]{5}" minlength="5" maxlength="5" value="60067"> 
                 and I'm a 
-                <input id="age_value" name="age" type="number" min="18" max="125" value="29" type="number" placeholder=""> 
+                <input id="age" name="age" type="number" min="18" max="125" value="" type="number" placeholder="29"> 
                 years old 
                 <select name="insured_1_gender" id="insured_1_gender">                    
                     <option value="Female" selected>woman</option>
@@ -63,7 +62,10 @@
                 </select>,
                 <input name="insured_1_dobDD" id="insured_1_dobDD" type="number" min="1" max="31" value="" type="number" placeholder="1">.
                 
-                <br>
+                    
+                    <h3 id="next-invalid-message">It seems that some of your answers are not valid. Please review the highlighted areas and try again</h3>
+                
+                
                 <button id="next-step" type="button">Next</button>                
 
                 <div id="contact-info">
@@ -74,10 +76,16 @@
                     and I can be reached at 
                     <input name="phone" id="phone" type="tel" minlength="10" pattern="\(*\d{3}[\)\-]*\d{3}[\-]*\d{4}" inputmode="tel" placeholder="(555)555-5555"> 
                     or 
-                    <input name="email" id="email" type="email" placeholder="name@email.com">
+                    <input name="email" id="email" type="email" placeholder="name@email.com">.
+
+                    <span id="location">
+                    <br>
+                    I live in 
+                        <input type="text" name="address_1_city" id="address_1_city" value="" placeholder="city">, 
+                        <input type="text" name="address_1_state" id="address_1_state" value="" size="2" minlength="2" maxlength="2" placeholder="st">
+                    </span>
                 
-<!--
-                
+<!--                
                     I'd like to cover
                     <select>
                         <option value="1" selected>me</option>
@@ -88,13 +96,12 @@
                     <br>
 
                     My family will earn 
-                    <input name="income" id="income" type="text"  class="income" value="" placeholder="$00,000" data-subline="* Family earnings are required to get a quote."> in 2016.
-                
+                    <input name="income" id="income" type="text"  class="income" value="" placeholder="$00,000" data-subline="* Family earnings are required to get a quote."> in 2016.                
 -->
                     
-                    <div class="nl-submit-wrap">
+                    <!-- <div class="nl-submit-wrap"> -->
                         <button class="nl-submit" type="submit">submit</button>
-                    </div>
+                    <!-- </div> -->
                 </div>
 
                 <div class="nl-overlay"></div>
