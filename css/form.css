@@ -61,6 +61,8 @@
     z-index: 10000;
 }
 
+.invalid {background-color:pink !important;}
+
 /* the toggle is the visible part in the form */
 .nl-field-toggle,
 .nl-form input
@@ -103,6 +105,14 @@
     transition: visibility 0s 0s, opacity 0.3s, transform 0.3s;
 }
 
+.nl-field.nl-field-open ul li{
+	border-top-width: 1px; 
+	border-top-style: solid;
+	border-top-color: #9C9A9C;
+	border-top-color: rgba(156,154,156,0.5);
+}
+.nl-field.nl-field-open ul li:first-child{ border-top-width: 0px; }  
+
 .nl-field ul li {
     color: #7E8D9B;
     position: relative;
@@ -139,12 +149,21 @@ input[type="text"] {
     /*width: auto;*/
     font-size: 1em;
     color: #3d88f9;
-
     font: inherit;
     text-align:center;
 }
-input[type="number"]{width:2em;}
-#first_name,#last_name{ 
+.nl-field-toggle,
+input[type="number"],
+input[type="tel"],
+input[type="email"],
+input[type="text"]{
+	line-height:1.2em;
+}
+input[type="number"]{
+	width:2em;
+}
+#first_name,
+#last_name{ 
 	width: 6em;
 	min-width: 6em;
 }
@@ -176,7 +195,10 @@ input[type="text"]:focus {
 :-ms-input-placeholder { /* Internet Explorer 10+ */
     color:    #7E8D9B;
 }
-
+.placeholder{ /* Internet Explorer 8-9 (apply via js) */
+	color:    #7E8D9B;
+    font-weight: 300;
+}
 
 
 /* icons for some elements */

@@ -82,6 +82,7 @@
             this.toggle = document.createElement( 'a' );
             this.toggle.innerHTML = this.elOriginal.options[ this.elOriginal.selectedIndex ].innerHTML;
             this.toggle.className = 'nl-field-toggle';
+            this.toggle.id = this.elOriginal.id+'-toggle';
             this.optionsList = document.createElement( 'ul' );
             var ihtml = '';
             Array.prototype.slice.call( this.elOriginal.querySelectorAll( 'option' ) ).forEach( function( el, i ) {
@@ -133,7 +134,7 @@
             this.fld.className = 'nl-field nl-ti-text';
             this.toggle = document.createElement( 'a' );
             this.toggle.className = 'nl-field-toggle';
-            this.toggle.id = this.elOriginal.id+"-toggle";
+            this.toggle.id = this.elOriginal.id+'-toggle';
             if(this.elOriginal.getAttribute('value')){                
                 this.toggle.innerHTML = this.elOriginal.getAttribute('value');
             } else { 
@@ -250,9 +251,30 @@
 
 } )( window );
 
+function addClass(element, className){
+	if (element.classList){
+ 		element.classList.add(className);
+	} else{ 
+		element.className += ' ' + className; 
+	}
+}
+function removeClass(element, className){
+	if (element.classList){
+		element.classList.remove(className);
+	} else { 
+  		element.className = element.className.replace(new RegExp('(^|\\b)' + className.split(' ').join('|') + '(\\b|$)', 'gi'), ' ');
+  	}
+}
+function hasClass(element, className){
+	if (element.classList){
+	  element.classList.contains(className);
+	} else {
+	  new RegExp('(^| )' + className + '( |$)', 'gi').test(element.className);	
+	}
+}
 
 
-function validateInput(element_id){
+function validateInput(element_id,state){
     var el       = document.getElementById(element_id);
     var toggleEl = { status: false, element: '' };
 
@@ -262,22 +284,31 @@ function validateInput(element_id){
     }
 
     function _setInvalid(){
-        if(toggle.status){ toggleEl.element.className+=" invalid" };
-        el.className+=" invalid"; 
+        if(toggleEl.status){
+			addClass(toggleEl.element,'invalid');			 
+        };
+        addClass(el,'invalid');       
     }
     
-
     function _removeInvalid () {
+    	if(toggleEl.status){
+    		removeClass(toggleEl.element, 'invalid');
+    	 }
+    	removeClass (el, 'invalid')
+    	/*
         var classArray = el.className.split(' ');
         el.className = classArray.splice(classArray.indexOf("invalid"),1);
         
         if(toggle.status){ 
             var ToggleClassArray = toggleEl.className.split(' ');
             toggleEl.className = ToggleClassArray.splice(ToggleClassArray.indexOf("invalid"),1);            
-        };    
+        };
+        */
     }
 
+if(state){ _removeInvalid(); } else { _setInvalid(); }
 
+/*
 
     switch (el.getAttribute('type')) {
         case 'number':    
@@ -297,6 +328,7 @@ function validateInput(element_id){
             break;
         
     } //else if(el.getAttribute('type') === 'text')) 
+*/
 }
 
 function getCityState(){
@@ -328,6 +360,33 @@ function getYear () {
 
 (function(){
 
+/* === deal with lack of placeholder support ===*/
+	function placeholderPolyfill(element_id) {
+		var element = document.getElementById(element_id);
+		
+		if(!('placeholder'in element) && element.getAttribute('placeholder')){
+			var text = element.getAttribute('placeholder');
+			addClass(element,'placeholder');	    	
+		    element.value = text;
+		    element.onfocus = function() {
+			    if (hasClass(this, placeholder)){
+			    	this.value = ''; 
+			    	removeClass(this,'placeholder');
+			    	
+			    }
+			}
+		    element.onblur = function() {
+		    	if (this.value == ''){
+		    		addClass(this, 'placeholder');		    		
+		    		this.value = text;
+		    	}
+		    }
+		}
+	}
+	placeholderPolyfill('first_name');
+	placeholderPolyfill('last_name');
+	placeholderPolyfill('phone');
+
 /* === text input auto sizing === */
     function autoInputSizing(element_id){
         document.getElementById(element_id).onkeyup = function(){            
@@ -351,7 +410,6 @@ function getYear () {
         }
 
     };
-
 
 /* === "NEXT" Button behavior === */
     var nextStepButton = document.getElementById('next-step');
