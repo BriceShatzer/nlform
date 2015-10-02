@@ -62,8 +62,12 @@
     z-index: 10000;
 }
 
-.invalid {background-color:pink !important;}
-
+/*.invalid {background-color:pink !important;}*/
+.invalid {
+	/*background-color: #ff8e1a !important;*/
+	background-color: #FFB366 !important;
+	background-color: rgba(255,129,0,0.6) !important;
+}
 /* the toggle is the visible part in the form */
 .nl-field-toggle,
 .nl-form input
@@ -328,15 +332,23 @@ input[type="text"]:focus {
 	width: 2em;
 }
 
-#next-invalid-message{
+#next-invalid-message{	
 	margin:0;	
-	font-size:1.25rem;
+/*	font-size: 1.25rem;
+	font-weight: 400;*/
+	color: #ff8100;
 	overflow-y: hidden;
-	max-height:0px;
-	line-height:initial;
+	max-height: 0px;
+	/*line-height: initial;*/
 	transition-property: all;
 	transition-duration: .5s;
 	transition-timing-function: cubic-bezier(0, 1, 0.5, 1);
+}
+#next-invalid-message h3{
+	font-size: 1.25rem;
+	font-weight: 400;
+	margin:1em;
+	line-height: initial;
 }
 
 /*
