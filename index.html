@@ -27,25 +27,13 @@
             <h2>Help us find plans that are best suited for you by filling out the information below.</h2>
             <form id="form" class="nl-form">
                 <input type="hidden" name="insured_1_dobYYYY" id="insured_1_dobYYYY" value="">
+                <input name="address_1_zip" id="address_1_zip" type="hidden" size="5" minlength="5" maxlength="5" value="60067"> 
 
-                
+                <!--
                 My zip code is 
                 <input name="address_1_zip" id="address_1_zip" type="text" size="5" autocomplete="postal-code" pattern="[0-9]{5}" minlength="5" maxlength="5" value="60067"> 
-                and I'm a 
-                <input id="age" name="age" type="number" min="18" max="125" value="" type="number" placeholder="29"> 
-                years old 
-                <select name="insured_1_gender" id="insured_1_gender">                    
-                    <option value="Female" selected>woman</option>
-                    <option value="Male">man</option>                        
-                </select>.
-                
-                <br>
-                I
-                <select name="insured_1_smoker" id="insured_1_smoker">
-                    <option value="no" selected>do not</option>
-                    <option value="yes">do</option>                        
-                </select> 
-                smoke, and my birthday is
+                and  -->                
+                My birthday is
                 <select name="insured_1_dobMM" id="insured_1_dobMM">
                     <option value="1" selected>January</option>
                     <option value="2">February</option>
@@ -59,21 +47,33 @@
                     <option value="10">October</option>
                     <option value="11">November</option>                    
                     <option value="12">December</option>
-                </select>,
-                <input name="insured_1_dobDD" id="insured_1_dobDD" type="number" min="1" max="31" value="" type="number" placeholder="1">.
+                </select>
+                <input name="insured_1_dobDD" id="insured_1_dobDD" type="number" min="1" max="31" value="" type="number" placeholder="1">
+                , and I'm a
+                <input id="age" name="age" type="number" min="18" max="125" value="" type="number" placeholder="29"> 
+                years old 
+                <select name="insured_1_gender" id="insured_1_gender">                    
+                    <option value="Female" selected>woman</option>
+                    <option value="Male">man</option>                        
+                </select> 
+                that 
+                <select name="insured_1_smoker" id="insured_1_smoker">
+                    <option value="no" selected>does not smoke</option>
+                    <option value="yes">smokes</option>                        
+                </select>
+                . 
                 
-                    <div id="next-invalid-message">
+                <div id="next-invalid-message">
                     <h3>
                         It seems that some of your answers are not valid. <br>
                         Please review the highlighted areas and try again.
                     </h3>
-                    </div>
+                </div>
                 
                 
                 <button id="next-step" type="button">Next</button>                
 
-                <div id="contact-info">
-                
+                <div id="contact-info">                
                     My name is 
                     <input name="first_name" id="first_name" type="text" placeholder="Firstname" > 
                     <input name="last_name" id="last_name" type="text" placeholder="Lastname" > 
@@ -85,8 +85,8 @@
                     <span id="location">
                     <br>
                     I live in 
-                        <input type="text" name="address_1_city" id="address_1_city" value="" placeholder="city">, 
-                        <input type="text" name="address_1_state" id="address_1_state" value="" size="2" minlength="2" maxlength="2" placeholder="st">
+                        <input type="text" name="address_1_city" id="address_1_city" value="" placeholder="City">, 
+                        <input type="text" name="address_1_state" id="address_1_state" value="" size="2" minlength="2" maxlength="2" placeholder="ST">
                     </span>
                 
 <!--                
@@ -103,9 +103,14 @@
                     <input name="income" id="income" type="text"  class="income" value="" placeholder="$00,000" data-subline="* Family earnings are required to get a quote."> in 2016.                
 -->
                     
-                    <!-- <div class="nl-submit-wrap"> -->
-                        <button class="nl-submit" type="submit">submit</button>
-                    <!-- </div> -->
+                    <div id="submit-invalid-message">
+                        <h3>
+                            It seems that some of your answers are not valid. <br>
+                            Please review the highlighted areas and try again.
+                        </h3>
+                    </div>                    
+                    <button id="submit" class="nl-submit" type="submit">submit</button>
+                    
                 </div>
 
                 <div class="nl-overlay"></div>

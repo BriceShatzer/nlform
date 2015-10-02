@@ -313,7 +313,7 @@ function validateInput(element_id, state){
             break;
 
         case 'text':
-        case 'phone':
+        case 'tel':
             if( !el.value ||
                 el.getAttribute('minlength') && el.value.length < el.getAttribute('minlength') || 
                 el.getAttribute('maxlength') && el.value.length > el.getAttribute('maxlength') ){
@@ -452,9 +452,7 @@ function getYear () {
 /* === "NEXT" button behavior === */
     var nextStepButton = document.getElementById('next-step');
     var func = function(){
-    	var nextInvalidMessage = document.getElementById('next-invalid-message');
-
-		validateInput('address_1_zip');
+    	var nextInvalidMessage = document.getElementById('next-invalid-message');	
 		validateInput('age');
 		validateInput('insured_1_dobDD');
 		if( document.querySelectorAll('.invalid').length > 0 ){			
@@ -463,7 +461,7 @@ function getYear () {
 			nextInvalidMessage.style.maxHeight = '0px';      
 	        nextStepButton.style.display = 'none';
 			var bottom = document.getElementById('contact-info');
-	        bottom.style.maxHeight = bottom.scrollHeight+'px';
+	        bottom.style.maxHeight = bottom.scrollHeight+'px';	        
         }    
     }
 
@@ -476,29 +474,34 @@ function getYear () {
     }
 /* === "SUBMIT" behavior === */
 	var form = document.getElementById('form');
-    var func = function(){
-		var nextInvalidMessage = document.getElementById('next-invalid-message');
+    var func = function(event){
+		var submitInvalidMessage = document.getElementById('submit-invalid-message');
+		var returnValue;
 		getCityState();
 	    getYear();	 
-
-		validateInput('address_1_zip');
+		
 		validateInput('age');
 		validateInput('insured_1_dobDD');
 		validateInput('first_name');
 		validateInput('last_name');
 		validateInput('phone');
 		validateInput('email');
+		validateInput('address_1_city');
+		validateInput('address_1_state');
 
 		if( document.querySelectorAll('.invalid').length > 0 ){			
-			nextInvalidMessage.style.maxHeight = nextInvalidMessage.scrollHeight+'px';
+			document.getElementById('contact-info').style.overflow = 'visible';
+			submitInvalidMessage.style.maxHeight = submitInvalidMessage.scrollHeight+'px';
+			event.preventDefault();
+			returnValue = false;
 		} else {
-			nextInvalidMessage.style.maxHeight = '0px';
-	    	getCityState();
-	    	getYear();	        
-	        nextStepButton.style.display = 'none';
+			submitInvalidMessage.style.maxHeight = '0px';	    	
+	        submitStepButton.style.display = 'none';
 			var bottom = document.getElementById('contact-info');
 	        bottom.style.maxHeight = bottom.scrollHeight+'px';
+	        returnValue = true;
 	    }    
+	    return returnValue;
     }
 
     if(window.addEventListener){ // modern browsers including IE9+
